@@ -1,0 +1,26 @@
+#!/bin/bash
+. ~/.config/hypr/vars.conf
+
+restart_waybar() {
+    #restart the waybar
+    pkill waybar
+    waybar &
+    waybar --config ~/.config/waybar/config-bottom.jsonc
+
+}
+
+switch_keyboard() {
+    hyprctl switchxkblayout $SET_KB next
+}
+
+set_bg() {
+    swww img ~/.config/wallpaper/dracula.png
+}
+
+if [[ "$1" == "setbg" ]]; then
+    set_bg
+    restart_waybar
+elif [[ "$1" == "swkb" ]]; then
+    switch_keyboard
+    restart_waybar
+fi

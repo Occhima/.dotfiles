@@ -1,0 +1,10 @@
+restart_waybar() {
+    #restart the waybar
+    pkill waybar
+    waybar & 
+    #waybar --config ~/.config/waybar/config-bottom.jsonc
+
+}
+
+
+restart_waybar

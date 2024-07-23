@@ -1,0 +1,12 @@
+[
+ {
+    "layer": "top",
+    "position": "top",
+    "output": ["DP-1","HDMI-A-1"],
+    "height": 42,
+    "width": "auto",
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": ["tray", "idle_inhibitor", "pulseaudio", "disk", "network", "cpu", "memory", "clock"],
+    "include": ["~/.config/waybar/bar/acrylic.jsonc"]
+  }
+]

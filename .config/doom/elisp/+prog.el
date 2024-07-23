@@ -1,0 +1,177 @@
+
+;; For all modes
+;; (global-tree-sitter-mode)
+
+
+(after! projectile
+
+  (setq projectile-project-root-files-bottom-up '("package.json" ".projectile" ".project" ".git")
+        projectile-ignored-projects '("~/.emacs.d/")
+        projectile-project-search-path '("~/Dropbox/projects" ))
+  (defun projectile-ignored-project-function (filepath)
+    "Return t if FILEPATH is within any of `projectile-ignored-projects'"
+    (or (mapcar (lambda (p) (s-starts-with-p p filepath)) projectile-ignored-projects)))
+  )
+
+
+(after! magit
+  (setq  magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
+
+
+(after! git-gutter
+  (fringe-mode 8)
+  (after! git-gutter-fringe
+    (fringe-mode 8))
+  (setq +vc-gutter-diff-unsaved-buffer t))
+
+(after! orderless
+  (setq completion-category-overrides '((eglot (styles orderless))
+                                        (eglot-capf (styles orderless)))
+        )
+  )
+
+(after! corfu
+  (setq! orderless-component-separator #'orderless-escapable-split-on-space)
+  )
+
+(after! consult-gh
+  (add-to-list 'consult-gh-default-orgs-list "Occhima")
+  (setq consult-gh-default-clone-directory "~/Dropbox/projects")
+
+  )
+
+
+
+(use-package! jinx
+  ;; :hook (emacs-startup . global-jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  )
+
+()
+(use-package! goggles
+  :hook ((prog-mode text-mode) . goggles-mode)
+  :config
+  (setq-default goggles-pulse t)) ;; set to nil to disable pulsing
+
+
+
+;; IBuffer
+(set-popup-rule! "^\\*Ibuffer.*" :side 'bottom :size 0.4 :select t :ignore nil)
+
+
+(after! jupyter
+  (setq org-babel-default-header-args:jupyter-python '((:async . "yes")
+                                                       (:session . "py")
+                                                       (:pandoc . t)
+                                                       (:kernel . "python3"))
+        org-babel-default-header-args:jupyter-julia  '((:async . "yes")
+                                                       (:session . "jl")
+                                                       (:pandoc . t)
+                                                       (:kernel . "julia-1.9"))
+        org-babel-default-header-args:jupyter-R      '((:async . "yes")
+                                                       (:session . "r")
+                                                       (:pandoc . t)
+                                                       (:kernel . "ir"))
+        org-babel-default-header-args:jupyter-Wolfram-Language '(
+                                                                 (:session . "w")
+                                                                 (:pandoc . t)
+                                                                 (:kernel . "wolframlanguage13"))
+        )
+  )
+
+
+
+;; Configure Tempel
+(use-package! tempel
+  :defer t
+  ;; Require trigger prefix before template name when completing.
+
+
+  :init
+
+  ;; Setup completion at point
+  (defun tempel-setup-capf ()
+    ;; Add the Tempel Capf to `completion-at-point-functions'.
+    ;; `tempel-expand' only triggers on exact matches. Alternatively use
+    ;; `tempel-complete' if you want to see all matches, but then you
+    ;; should also configure `tempel-trigger-prefix', such that Tempel
+    ;; does not trigger too often when you don't expect it. NOTE: We add
+    ;; `tempel-expand' *before* the main programming mode Capf, such
+    ;; that it will be tried first.
+    (setq-local completion-at-point-functions
+                (cons #'tempel-complete
+                      completion-at-point-functions)))
+
+  (add-hook 'conf-mode-hook 'tempel-setup-capf)
+  (add-hook 'prog-mode-hook 'tempel-setup-capf)
+  (add-hook 'text-mode-hook 'tempel-setup-capf)
+
+  ;; Optionally make the Tempel templates available to Abbrev,
+  ;; either locally or globally. `expand-abbrev' is bound to C-x '.
+  ;; (add-hook 'prog-mode-hook #'tempel-abbrev-mode)
+  ;; (global-tempel-abbrev-mode)
+  :custom
+  (tempel-trigger-prefix "<")
+  )
+
+
+(after! eglot
+  ;; start gumshoe when programming
+
+  (eglot-booster-mode)
+  (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
+  (setq completion-category-overrides '((eglot (styles orderless))
+                                        (eglot-capf (styles orderless)))
+        eglot-connect-timeout 600))
+
+
+;;; add to $DOOMDIR/config.el
+(after! julia
+  (add-hook 'julia-mode-hook #'julia-snail-mode)
+  (setq julia-snail-terminal-type :eat)
+  (setq eglot-jl-language-server-project "~/.julia/environments/v1.9")
+  )
+
+
+
+
+(after! eshell
+  (defun my-disable-eldoc-in-eshell ()
+    "Disable eldoc-box-hover-mode in Eshell."
+    (when (eq major-mode 'eshell-mode)
+      (eldoc-mode -1)))
+
+  (add-hook 'eshell-mode-hook #'my-disable-eldoc-in-eshell)
+  )
+
+(after! grammarly
+  (setq grammarly-username (+pass-get-secret "grammarly/username")
+        grammarly-password (+pass-get-secret  "grammarly/password")
+        )
+  )
+
+
+(after! python
+  (require 'combobulate)
+  (add-hook 'python-ts-mode-hook combobulate-mode-hook )
+  )
+
+(after! combobulate
+  (setq combobulate-key-prefix "C-c o")
+  )
+
+
+(after! gumshoe
+  (global-gumshoe-backtracking-mode)
+  (setf gumshoe-slot-schema '(perspective time buffer position line)
+        gumshoe-auto-cancel-backtracking-p nil
+        )
+  )
+
+(after! haskell
+  (setq haskell-interactive-popup-errors nil)
+  )
+
+
+

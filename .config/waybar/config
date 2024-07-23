@@ -1,0 +1,97 @@
+{
+    "layer": "top", // Waybar at top layer
+    "position": "top", // Waybar position (top|bottom|left|right)
+    "output": ["DP-1","HDMI-A-1"],
+    "height": 8, // Waybar height (to be removed for auto height)
+    "width": "auto", // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": ["tray", "battery", "pulseaudio","network", "cpu", "memory", "custom/swaylock", "clock", "idle_inhibitor"],
+    // Modules configuration
+     "hyprland/workspaces": {
+         "disable-scroll": true,
+         "all-outputs": true,
+         "warp-on-scroll": false,
+         "activate-only": false,
+         "format": "{icon}",
+         "on-click": "activate",
+         "format-icons": {
+                "urgent": "  ",
+                "active": "  ",
+                "default": " 󰧞 "
+           },
+          "persistent-workspaces": {
+              "1": [],
+              "2": [],
+              "3": [],
+              "4": [],
+              "5": [],
+              "6": [],
+              "7": [],
+              "8": [],
+              "9": []
+          },
+     },
+     "custom/swaylock": {
+        "format": "LOCK",
+        "on-click": "swaylock -f",
+        "tooltip": false,
+      },
+      "idle_inhibitor": {
+        "format": "{icon} ",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "CPU {usage}%",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "MEM {}%"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "NET {essid} ({signalStrength}%)",
+        "format-ethernet": "NET {ipaddr}/{cidr}  ",
+        "tooltip-format": "{ifname} via {gwaddr}  ",
+        "format-linked": "NET {ifname} (No IP)  ",
+        "format-disconnected": "Disconnected",
+        "format-alt": "NET {ifname}: {ipaddr}/{cidr}"
+    },
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        // "format": "{volume}% {icon} {format_source}",
+        "format": "VOL {volume}%",
+        "format-bluetooth": "VOL-BT {volume}%",
+        "format-bluetooth-muted": "VOL-BL-MUT",
+        "format-muted": "VOL-MUT{format_source}",
+        "format-source": "MIC {volume}%",
+        "format-source-muted": "MIC-MUT",
+        "on-click": "pavucontrol"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
+        // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    }
+}
+

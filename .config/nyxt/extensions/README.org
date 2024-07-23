@@ -1,0 +1,16 @@
+* Usage
+Add the following to your init file:
+
+Copy this repository to =~/.local/share/nyxt/extensions/=. For
+example, to clone it to that directory do the following:
+
+#+begin_src
+  git clone https://github.com/atlas-engineer/invader ~/.local/share/nyxt/extensions/invader
+#+end_src
+
+Then in your =~/.config/nyxt/config.lisp= file, add the following:
+
+#+BEGIN_SRC
+(nyxt:define-nyxt-user-system-and-load "nyxt-user/invader-proxy"
+  :depends-on ("invader"))
+#+END_SRC
