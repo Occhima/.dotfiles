@@ -15,7 +15,6 @@
         message-sendmail-f-is-evil t
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-send-mail-function #'message-send-mail-with-sendmail
-        ;; +mu4e-gmail-accounts '(("marcoocchialini@usp.br" . "/gmail"))
         mu4e-update-interval 60 ; seconds between each mail r
         )
 
