@@ -45,35 +45,37 @@
 
 
 (define-configuration (browser)
-  (
-   (restore-session-on-startup-p nil)
-   (external-editor-program (if (member :flatpak *features*)
-                                "flatpak-spawn --host /usr/local/bin/emacsclient -c"
-                                "/usr/local/bin/emacsclient -c"))
-   (theme black-theme)
-   )
+    (
+     (restore-session-on-startup-p nil)
+     (external-editor-program (if (member :flatpak *features*)
+                                  "flatpak-spawn --host /usr/local/bin/emacsclient -c"
+                                  "/usr/local/bin/emacsclient -c"))
+     (theme black-theme)
+     )
   )
 
 
 (define-configuration status-buffer
-  ((style (str:concat %slot-value%
-                      (theme:themed-css (theme *browser*))))))
+    ((style (str:concat %slot-value%
+                        (theme:themed-css (theme *browser*))))))
 
 
 (define-configuration nyxt/mode/password:password-mode
-  ((nyxt/mode/password:password-interface
-    (make-instance 'password:password-store-interface))))
+    ((nyxt/mode/password:password-interface
+      (make-instance 'password:password-store-interface :executable (if (member :flatpak *features*)
+                                                                        "flatpak-spawn --host pass"
+                                                                        "pass")))))
 
 (define-configuration buffer
-  ((default-modes
-    (append (list 'nyxt/mode/password:password-mode) %slot-value%))))
+    ((default-modes
+      (append (list 'nyxt/mode/password:password-mode) %slot-value%))))
 
 
 (define-configuration (input-buffer)
-  ((default-modes (pushnew 'nyxt/mode/vi:vi-normal-mode %slot-value%))))
+    ((default-modes (pushnew 'nyxt/mode/vi:vi-normal-mode %slot-value%))))
 
 (define-configuration (prompt-buffer)
-  ((default-modes (pushnew 'nyxt/mode/vi:vi-insert-mode %slot-value%))))
+    ((default-modes (pushnew 'nyxt/mode/vi:vi-insert-mode %slot-value%))))
 
 
 (defvar *my-search-engines*
@@ -95,10 +97,10 @@
      %slot-default%))))
 
 (define-configuration nyxt/mode/proxy:proxy-mode
-  ((nyxt/mode/proxy:proxy (make-instance 'proxy
-                                         :url (quri:uri "http://127.0.0.1:8080")
-                                         :allowlist '("localhost" "localhost:8080")
-                                         :proxied-downloads-p t))))
+    ((nyxt/mode/proxy:proxy (make-instance 'proxy
+                                           :url (quri:uri "http://127.0.0.1:8080")
+                                           :allowlist '("localhost" "localhost:8080")
+                                           :proxied-downloads-p t))))
 
 
 
