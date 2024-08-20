@@ -2,6 +2,14 @@
 ;; For all modes
 ;; (global-tree-sitter-mode)
 
+(after! dirvish
+  (setq! dirvish-quick-access-entries
+         `(("h" "~/"                          "Home")
+           ("e" ,user-emacs-directory         "Emacs user directory")
+           ("m" "~/Dropbox/projects/learning/usp/masters_degree/"                     "Masters Degree")
+           ("l" "~/Dropbox/projects/library"               "Library")
+           ("d" "~/Downloads/"                "Downloads")
+           ("t" "~/.local/share/Trash/files/" "Trash"))))
 
 (after! projectile
 
