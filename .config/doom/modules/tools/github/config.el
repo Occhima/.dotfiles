@@ -13,10 +13,10 @@
   (consult-gh-prioritize-local-folder 'suggest)
   :config
 
-  (after! (forge transient)
-    (require 'consult-gh-embark)
-    (require 'consult-gh-transient)
-    )
+  ;;(after! (forge transient)
+   ;; (require 'consult-gh-embark)
+   ;; (require 'consult-gh-transient)
+   ;; )
 
   )
 

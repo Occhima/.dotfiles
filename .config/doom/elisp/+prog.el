@@ -141,9 +141,6 @@
   (setq eglot-jl-language-server-project "~/.julia/environments/v1.9")
   )
 
-
-
-
 (after! eshell
   (defun my-disable-eldoc-in-eshell ()
     "Disable eldoc-box-hover-mode in Eshell."

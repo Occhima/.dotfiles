@@ -15,7 +15,7 @@
 (unpin! org-gcal)
 (unpin! julia-snail)
 (unpin! eglot)
-(unpin! evil-collection)
+;;(unpin! evil-collection)
 (unpin! doom-modeline)
 (unpin! docker)
 (unpin! jupyter)
