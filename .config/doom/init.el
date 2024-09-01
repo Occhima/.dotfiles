@@ -195,6 +195,7 @@
         +tree-sitter)                         ; all(hope(abandon(ye(who(enter(here))))))
 
        (julia
+        +tree-sitter
         +lsp
         +snail
         )
@@ -204,7 +205,7 @@
        (latex
         +cdlatex
         +lsp
-        +latexmk
+        +fold
         )                    ; writing papers in Emacs has never been so fun
        ;;lean
        ;;factor
@@ -258,7 +259,7 @@
        yaml                             ; JSON, but readable
 
        :email
-       (mu4e +gmail +consult)
+       (mu4e +gmail +org +consult)
        ;;  notmuch
        ;;(wanderlust +gmail)
 
@@ -269,7 +270,7 @@
        ;; twitter                      ; twitter client https://twitter.com/vnought
        ;; everywhere
        ereader
-       ;; nyxt
+       nyxt
        weather
 
 

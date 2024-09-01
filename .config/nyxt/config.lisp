@@ -81,7 +81,9 @@
 (defvar *my-search-engines*
   (list
    '("g" "https://google.com/search?q=~a" "https://google.com")
+   '("gs" "https://scholar.google.com/scholar?q=~a" "https://scholar.google.com")
    '("git" "https://github.com/search?q=~a" "https://github.com")
+   '("r" "https://old.reddit.com/search?q=~a" "https://old.reddit.com")
    '("yt" "https://yewtu.be/search?q=~a" "https://yewtu.be")
    '("ax" "https://arxiv.org/search?query=~a&searchtype=all&source=header" "https://arxiv.org")
    '("arch" "https://aur.archlinux.org/packages?O=0&K=~a" "https://aur.archlinux.org")
@@ -101,6 +103,7 @@
                                            :url (quri:uri "http://127.0.0.1:8080")
                                            :allowlist '("localhost" "localhost:8080")
                                            :proxied-downloads-p t))))
+
 
 
 

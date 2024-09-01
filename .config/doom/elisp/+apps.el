@@ -6,9 +6,7 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
 (after! mu4e
-
   (setq sendmail-program (executable-find "msmtp")
-
         send-mail-function #'smtpmail-send-it
         mu4e-index-cleanup nil
         mu4e-index-lazy-check t
@@ -16,7 +14,20 @@
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-send-mail-function #'message-send-mail-with-sendmail
         mu4e-update-interval 60 ; seconds between each mail r
+        +mu4e-gmail-accounts '(("Gmail" . "/gmail"))
         )
+
+  ;; (set-email-account! "Usp"
+  ;;                     '(
+  ;;                       (mu4e-sent-folder       . "//sent items")
+  ;;                       (mu4e-drafts-folder     . "//drafts")
+  ;;                       (mu4e-trash-folder      . "/gmail/trash")
+  ;;                       (mu4e-refile-folder     . "/gmail/Inbox")
+  ;;                       (smtpmail-smtp-user     . "marcoocchialini2@gmail.com")
+  ;;                       (user-mail-address     . "marcoocchialini2@gmail.com")
+  ;;                       (mu4e-compose-signature . "---\nAtte,\nMarco Occhialini")
+  ;;                       )
+  ;;                     t)
 
   (set-email-account! "Gmail"
                       '(
