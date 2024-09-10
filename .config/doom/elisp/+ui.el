@@ -12,7 +12,7 @@
  evil-split-window-below t
  show-trailing-whitespace t
  which-key-idle-secondary-delay 0
- doom-theme 'doom-monokai-classic
+ doom-theme 'doom-nord
  doom-font (font-spec :family "IosevkaTerm" :size 22 :weight 'Semibold)
  doom-variable-pitch-font (font-spec :family "IosevkaTerm" :size 20)
  doom-symbol-font (font-spec :family "JuliaMono")
@@ -61,7 +61,7 @@
   (dashboard-set-heading-icons t)
   (dashboard-image-banner-max-height 250)
   (dashboard-banner-logo-title "[ S C I E N T I A 🔱 V I N C E S]" ) ; [Ποσειδον 🔱 εδιτορ]
-  (dashboard-startup-banner "~/.config/doom/misc/splash/ue-colorful.png" )
+  (dashboard-startup-banner "~/.config/doom/misc/splash/emacs_splash.png" )
   :config
   (dashboard-setup-startup-hook)
   (setq

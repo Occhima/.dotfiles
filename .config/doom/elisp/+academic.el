@@ -39,5 +39,7 @@
 
 
 (after! scihub
-  (setq scihub-download-directory "~/Dropbox/projects/library/articles/")
+  (setq scihub-download-directory "~/Dropbox/projects/library/articles/"
+        scihub-fetch-domain 'scihub-fetch-domains-lovescihub
+        )
   )

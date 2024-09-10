@@ -1,4 +1,6 @@
 (after! org
+  (require 'corg)
+  (add-hook 'org-mode-hook #'corg-setup)
   ;; (advice-remove 'org-babel-do-load-languages #'ignore)
   (remove-hook 'org-mode-hook #'+org-make-last-point-visible-h)
   (add-to-list 'org-modules 'org-habit)
