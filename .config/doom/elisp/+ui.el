@@ -12,7 +12,7 @@
  evil-split-window-below t
  show-trailing-whitespace t
  which-key-idle-secondary-delay 0
- doom-theme 'doom-nord
+ doom-theme 'doom-one
  doom-font (font-spec :family "IosevkaTerm" :size 22 :weight 'Semibold)
  doom-variable-pitch-font (font-spec :family "IosevkaTerm" :size 20)
  doom-symbol-font (font-spec :family "JuliaMono")
