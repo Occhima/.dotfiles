@@ -12,17 +12,17 @@
  evil-split-window-below t
  show-trailing-whitespace t
  which-key-idle-secondary-delay 0
- doom-theme 'doom-one
+ doom-theme 'doom-monokai-classic
+ ;; doom-theme 'srcery
  doom-font (font-spec :family "IosevkaTerm" :size 22 :weight 'Semibold)
  doom-variable-pitch-font (font-spec :family "IosevkaTerm" :size 20)
  doom-symbol-font (font-spec :family "JuliaMono")
  doom-fallback-buffer-name "*dashboard*"
-
- ;; fancy-splash-image "~/.config/doom/misc/splash/emacs.svg"
+ fancy-splash-image "~/.config/doom/misc/splash/xemacs_color.svg"
  )
 
 
-;; (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+
 ;; (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
 
 ;; (doom/set-frame-opacity 50)
@@ -31,6 +31,9 @@
   '(font-lock-keyword-face :slant italic)
   )
 
+
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(add-hook '+doom-dashboard-function #'doom-dashbo)
 ;; (after! all-the-icons
 ;;   (setq all-the-icons-scale-factor 1.2))
 
@@ -50,79 +53,6 @@
         centaur-tabs-style "slant"
         centaur-tabs-modified-marker "•"))
 
-
-(use-package! dashboard
-  :init (add-hook 'dashboard-mode-hook (lambda () (setq show-trailing-whitespace nil)))
-  :custom
-  (dashboard-set-navigator t)
-  (dashboard-center-content t)
-  (dashboard-set-file-icons t)
-  (dashboard-display-icons-p t)
-  (dashboard-set-heading-icons t)
-  (dashboard-image-banner-max-height 250)
-  (dashboard-banner-logo-title "[ S C I E N T I A 🔱 V I N C E S]" ) ; [Ποσειδον 🔱 εδιτορ]
-  (dashboard-startup-banner "~/.config/doom/misc/splash/emacs_splash.png" )
-  :config
-  (dashboard-setup-startup-hook)
-  (setq
-   dashboard-navigator-buttons
-   `(;; line1
-
-     (
-      (, ""
-         "GitHub"
-         "Browse homepage"
-         (lambda (&rest _) (browse-url "https://github.com/Occhima/")) nil "[ " " ]")
-
-      (, ""
-         "HackTheBox"
-         "Access HackTheBox"
-         (lambda (&rest _) (browse-url "https://app.hackthebox.com/home")) nil "[ " " ]")
-
-      (, ""
-         "Numerai"
-         "Access Numerai"
-         (lambda (&rest _) (browse-url "https://numer.ai")) nil "[ " " ]")
-
-      )
-
-     ;; ;; line 2
-     ;; Empty line
-     (("" "\n" "" nil nil "" ""))
-
-     ((, "  "
-         "Find file" nil
-         (lambda (&rest _) (find-file)) nil "" "            SPC f f"))
-
-     ((, "  "
-         "Open project" nil
-         (lambda (&rest _) (projectile-switch-project)) nil "" "         SPC p p"))
-
-     ((, "  "
-         "Open Agenda" nil
-         (lambda (&rest _) (org-agenda)) nil "" "         SPC o A"))
-
-     ((, "  "
-         "Open Doom Config" nil
-         (lambda (&rest _) (org-agenda)) nil "" "         SPC f p"))
-
-     )
-
-   )
-
-  (setq
-   dashboard-projects-backend 'projectile
-   dashboard-projects-switch-function 'projectile-switch-project
-   dashboard-items '((recents        . 3)
-                     (projects       . 2)
-                     (bookmarks      . 2)
-                     ;; (agenda         . 2)
-                     (registers      . 2)
-                     )
-   initial-buffer-choice (lambda () (get-buffer-create "*dashboard*"))
-   )
-
-  ) ; "#f1fa8c"
 
                                         ; Golden ration
                                         ;

@@ -36,7 +36,9 @@
 
 
 
-(package! dashboard)
+(package! dashboard
+  :disable t
+  )
 
 (package! jinx :recipe (:host github :repo "minad/jinx"))
 (package! goggles :recipe (:host github :repo "minad/goggles"))
@@ -47,41 +49,44 @@
 
 
 (package! mastodon)
+(package! srcery-theme
+  :disable t
+  )
 
 
 (package! empv
-          :recipe (:host github :repo "isamert/empv.el"))
+  :recipe (:host github :repo "isamert/empv.el"))
 
 
 (package! golden-ratio
-          :disable t
-          :recipe (:host github :repo "roman/golden-ratio.el"))
+  :disable t
+  :recipe (:host github :repo "roman/golden-ratio.el"))
 
 (package! elfeed-tube
-          :disable t
-          )
+  :disable t
+  )
 
 ;; (package! casual)
 
 
 (package! combobulate
-          ;; :disable t
-          :recipe (:host github
-                   :repo "mickeynp/combobulate"
-                         )
-          )
+  ;; :disable t
+  :recipe (:host github
+           :repo "mickeynp/combobulate"
+           )
+  )
 
 (package! eglot-booster
-          :recipe (:host github
-                   :repo "jdtsmith/eglot-booster"
-                         )
-          )
+  :recipe (:host github
+           :repo "jdtsmith/eglot-booster"
+           )
+  )
 
 (package! gumshoe
-          :recipe (:host github
-                   :repo "Overdr0ne/gumshoe"
-                         )
-          )
+  :recipe (:host github
+           :repo "Overdr0ne/gumshoe"
+           )
+  )
 
 (package! smudge)
 

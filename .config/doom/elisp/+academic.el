@@ -35,7 +35,9 @@
           (note . "# Notes on ${author editor}, ${title}"))
         citar-open-note-function 'orb-citar-edit-note
         citar-notes-paths '("~/Dropbox/projects/org/roam" ))
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple))
+  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+  (citar-capf-setup)
+  )
 
 
 (after! scihub

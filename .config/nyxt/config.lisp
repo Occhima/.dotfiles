@@ -44,62 +44,14 @@
                  ))
 
 
-(defvar dracula-theme
-  (make-instance 'theme:theme
-                 :font-family "Iosevka"
-                 :dark-p t
-                 :background-color- "#1E1E2A"
-                 :background-color "#282A36"
-                 :background-color+ "#373844"
-                 :on-background-color "#F8F8F2"
-
-                 :primary-color- "#44475A"
-                 :primary-color "#6272A4"
-                 :primary-color+ "#BD93F9"
-                 :on-primary-color "#F8F8F2"
-
-                 :secondary-color- "#44475A"
-                 :secondary-color "#565761"
-                 :secondary-color+ "#6272A4"
-                 :on-secondary-color "#F8F8F2"
-
-                 :action-color- "#282A36"
-                 :action-color "#373844"
-                 :action-color+ "#44475A"
-                 :on-action-color "#F8F8F2"
-
-                 :success-color- "#44475A"
-                 :success-color "#6272A4"
-                 :success-color+ "#BD93F9"
-                 :on-success-color "#F8F8F2"
-
-                 :highlight-color- "#BD93F9"
-                 :highlight-color "#FF79C6"
-                 :highlight-color+ "#FF92D0"
-                 :on-highlight-color "#282A36"
-
-                 :warning-color- "#6272A4"
-                 :warning-color "#44475A"
-                 :warning-color+ "#BD93F9"
-                 :on-warning-color "#F8F8F2"
-
-                 :codeblock-color- "#44475A"
-                 :codeblock-color "#6272A4"
-                 :codeblock-color+ "#BD93F9"
-                 :on-codeblock-color "#F8F8F2"
-                 ))
-
-
-
-
 
 (define-configuration (browser)
     (
      (restore-session-on-startup-p nil)
      (external-editor-program (if (member :flatpak *features*)
-                                  "flatpak-spawn --host /usr/local/bin/emacsclient -c"
-                                  "/usr/local/bin/emacsclient -c"))
-     (theme dracula-theme)
+                                  "flatpak-spawn --host /usr/local/bin/emacsclient -r"
+                                  "/usr/local/bin/emacsclient -r"))
+     (theme black-theme)
      )
   )
 
@@ -112,13 +64,8 @@
 (define-configuration nyxt/mode/password:password-mode
     ((nyxt/mode/password:password-interface
       (make-instance 'password:password-store-interface :executable (if (member :flatpak *features*)
-                                                                        "flatpak-spawn --host pass"
-                                                                        "pass")))))
-
-(define-configuration buffer
-    ((default-modes
-      (append (list 'nyxt/mode/password:password-mode) %slot-value%))))
-
+                                                                        "flatpak-spawn --host /usr/bin/pass"
+                                                                        "/usr/bin/pass")))))
 
 (define-configuration (input-buffer)
     ((default-modes (pushnew 'nyxt/mode/vi:vi-normal-mode %slot-value%))))
@@ -153,7 +100,21 @@
                                            :allowlist '("localhost" "localhost:8080")
                                            :proxied-downloads-p t))))
 
+(defun old-reddit-handler (request-data)
+  (let ((url (url request-data)))
+    (setf (url request-data)
+          (if (search "reddit.com" (quri.uri:uri-host url))
+              (progn
+                (setf (quri.uri:uri-host url) "old.reddit.com")
+                (log:info "Switching to old Reddit: ~s"
+                          (render-url url))
+                url)
+              url)))
+  request-data)
 
+(define-configuration web-buffer
+    ((request-resource-hook
+      (hooks:add-hook %slot-value% 'old-reddit-handler))))
 
 
 (setf (uiop/os:getenv "WEBKIT_DISABLE_COMPOSITING_MODE") "1")
