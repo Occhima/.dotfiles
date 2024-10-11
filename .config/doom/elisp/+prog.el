@@ -147,7 +147,36 @@
     (when (eq major-mode 'eshell-mode)
       (eldoc-mode -1)))
 
+
+  (defun fancy-shell ()
+    "A pretty shell with git status"
+    (let* ((cwd (abbreviate-file-name (eshell/pwd)))
+           (ref (magit-get-shortname "HEAD"))
+           (stat (magit-file-status))
+           (x-stat eshell-last-command-status)
+           (git-chunk
+            (if ref
+                (format "%s%s%s "
+                        (propertize (if stat "[" "(") 'font-lock-face (list :foreground (if stat "red" "green")))
+                        (propertize ref 'font-lock-face '(:foreground "yellow"))
+                        (propertize (if stat "]" ")") 'font-lock-face (list :foreground (if stat "red" "green"))))
+              "")))
+      (propertize
+       (format "%s %s %s$ "
+               (if (< 0 x-stat) (format (propertize "!%s" 'font-lock-face '(:foreground "red")) x-stat)
+                 (propertize "➤" 'font-lock-face (list :foreground (if (< 0 x-stat) "red" "green"))))
+               (propertize cwd 'font-lock-face '(:foreground "#45babf"))
+               git-chunk)
+       'read-only t
+       'front-sticky   '(font-lock-face read-only)
+       'rear-nonsticky '(font-lock-face read-only))))
+
   (add-hook 'eshell-mode-hook #'my-disable-eldoc-in-eshell)
+  (setq eshell-prompt-function 'fancy-shell
+        eshell-prompt-regexp "^[^#$\n]* [$#] "
+        eshell-highlight-prompt nil
+        )
+
   )
 
 (after! grammarly

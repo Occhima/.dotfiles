@@ -1,6 +1,6 @@
 (defvar black-theme
   (make-instance 'theme:theme
-                 :font-family "Iosevka"
+                 :font-family "Iosevka Comfy"
                  :dark-p t
                  :background-color- "#222323"
                  :background-color "#222323"
@@ -112,9 +112,9 @@
               url)))
   request-data)
 
-(define-configuration web-buffer
-    ((request-resource-hook
-      (hooks:add-hook %slot-value% 'old-reddit-handler))))
+;; (define-configuration web-buffer
+;;     ((request-resource-hook
+;;       (hooks:add-hook %slot-value% 'old-reddit-handler))))
 
 
 (setf (uiop/os:getenv "WEBKIT_DISABLE_COMPOSITING_MODE") "1")

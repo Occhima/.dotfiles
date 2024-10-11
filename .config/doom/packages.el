@@ -36,9 +36,8 @@
 
 
 
-(package! dashboard
-  :disable t
-  )
+(package! dashboard)
+(package! all-the-icons)
 
 (package! jinx :recipe (:host github :repo "minad/jinx"))
 (package! goggles :recipe (:host github :repo "minad/goggles"))
@@ -67,6 +66,9 @@
   )
 
 ;; (package! casual)
+
+
+(package! casual-suite)
 
 
 (package! combobulate
