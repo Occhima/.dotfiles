@@ -9,3 +9,5 @@ done
 
 
 
+
+if [ -e /home/occhima/.nix-profile/etc/profile.d/nix.sh ]; then . /home/occhima/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

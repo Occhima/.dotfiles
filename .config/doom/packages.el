@@ -36,8 +36,12 @@
 
 
 
-(package! dashboard)
-(package! all-the-icons)
+(package! dashboard
+  :disable t
+  )
+(package! all-the-icons
+  :disable t
+  )
 
 (package! jinx :recipe (:host github :repo "minad/jinx"))
 (package! goggles :recipe (:host github :repo "minad/goggles"))

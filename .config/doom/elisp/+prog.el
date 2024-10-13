@@ -167,9 +167,12 @@
                  (propertize "➤" 'font-lock-face (list :foreground (if (< 0 x-stat) "red" "green"))))
                (propertize cwd 'font-lock-face '(:foreground "#45babf"))
                git-chunk)
-       'read-only t
-       'front-sticky   '(font-lock-face read-only)
-       'rear-nonsticky '(font-lock-face read-only))))
+       ;; 'read-only f
+       ;; 'front-sticky   '(font-lock-face read-only)
+       ;; 'rear-nonsticky '(font-lock-face read-only)
+       )
+      )
+    )
 
   (add-hook 'eshell-mode-hook #'my-disable-eldoc-in-eshell)
   (setq eshell-prompt-function 'fancy-shell

@@ -1,6 +1,7 @@
 
 alias config='/usr/bin/git --git-dir=/home/occhima/.cfg/ --work-tree=/home/occhima'
 alias doom='~/.config/emacs/bin/doom'
+alias remdaemon='systemctl daemon-reload --user && systemctl restart emacs --user'
 
 # Changing "ls" to "exa"
  alias ls='exa -al --color=always --group-directories-first --icons' # my preferred listing
