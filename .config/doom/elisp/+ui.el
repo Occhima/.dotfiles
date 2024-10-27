@@ -17,7 +17,7 @@
  doom-variable-pitch-font (font-spec :family "Iosevka Comfy" :size 20)
  doom-symbol-font (font-spec :family "JuliaMono")
  doom-fallback-buffer-name "*dashboard*"
- fancy-splash-image "~/.config/doom/misc/splash/resized_gnu.png"
+ fancy-splash-image "~/.config/doom/misc/splash/emacs.svg"
  )
 
 (custom-set-faces!

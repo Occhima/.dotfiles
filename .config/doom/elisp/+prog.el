@@ -52,11 +52,11 @@
 
 (use-package! jinx
   ;; :hook (emacs-startup . global-jinx-mode)
+  :defer t
   :bind (("M-$" . jinx-correct)
          ("C-M-$" . jinx-languages))
   )
 
-()
 (use-package! goggles
   :hook ((prog-mode text-mode) . goggles-mode)
   :config
@@ -137,8 +137,8 @@
 ;;; add to $DOOMDIR/config.el
 (after! julia
   (add-hook 'julia-mode-hook #'julia-snail-mode)
-  (setq julia-snail-terminal-type :eat)
-  (setq eglot-jl-language-server-project "~/.julia/environments/v1.9")
+  (setq julia-snail-terminal-type :vterm)
+  (setq eglot-jl-language-server-project "~/.julia/environments/v1.11")
   )
 
 (after! eshell
@@ -168,8 +168,8 @@
                (propertize cwd 'font-lock-face '(:foreground "#45babf"))
                git-chunk)
        ;; 'read-only f
-       ;; 'front-sticky   '(font-lock-face read-only)
-       ;; 'rear-nonsticky '(font-lock-face read-only)
+       'front-sticky   '(font-lock-face)
+       'rear-nonsticky '(font-lock-face)
        )
       )
     )
@@ -190,8 +190,10 @@
 
 
 (after! python
-  (require 'combobulate)
-  (add-hook 'python-ts-mode-hook combobulate-mode-hook )
+  ;; (require 'combobulate)
+  ;; (add-hook 'python-ts-mode-hook combobulate-mode-hook )
+  (setq +python-ipython-repl-args '("-i" "--simple-prompt" "--no-color-info"))
+  (setq +python-jupyter-repl-args '("--simple-prompt"))
   )
 
 (after! combobulate

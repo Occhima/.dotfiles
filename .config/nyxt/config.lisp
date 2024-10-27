@@ -83,6 +83,7 @@
    '("yt" "https://yewtu.be/search?q=~a" "https://yewtu.be")
    '("ax" "https://arxiv.org/search?query=~a&searchtype=all&source=header" "https://arxiv.org")
    '("arch" "https://aur.archlinux.org/packages?O=0&K=~a" "https://aur.archlinux.org")
+   '("fl" "https://flathub.org/apps/search?q=~a" "https://flathub.org/apps")
    )
   "List of search engines.")
 
