@@ -12,7 +12,7 @@
  evil-split-window-below t
  show-trailing-whitespace t
  which-key-idle-secondary-delay 0
- doom-theme 'doom-monokai-classic
+ doom-theme 'doom-molokai
  doom-font (font-spec :family "Iosevka Comfy" :size 22 :weight 'Semibold)
  doom-variable-pitch-font (font-spec :family "Iosevka Comfy" :size 20)
  doom-symbol-font (font-spec :family "JuliaMono")

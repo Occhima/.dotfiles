@@ -76,7 +76,7 @@
         org-babel-default-header-args:jupyter-julia  '((:async . "yes")
                                                        (:session . "jl")
                                                        (:pandoc . t)
-                                                       (:kernel . "julia-1.9"))
+                                                       (:kernel . "julia-1.11"))
         org-babel-default-header-args:jupyter-R      '((:async . "yes")
                                                        (:session . "r")
                                                        (:pandoc . t)
@@ -125,8 +125,6 @@
 
 
 (after! eglot
-  ;; start gumshoe when programming
-
   (eglot-booster-mode)
   (add-hook 'eglot-managed-mode-hook #'eldoc-box-hover-mode t)
   (setq completion-category-overrides '((eglot (styles orderless))
@@ -136,9 +134,7 @@
 
 ;;; add to $DOOMDIR/config.el
 (after! julia
-  (add-hook 'julia-mode-hook #'julia-snail-mode)
-  (setq julia-snail-terminal-type :vterm)
-  (setq eglot-jl-language-server-project "~/.julia/environments/v1.11")
+  (setq eglot-jl-language-server-project eglot-jl-base)
   )
 
 (after! eshell
