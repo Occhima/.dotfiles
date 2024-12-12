@@ -4,7 +4,7 @@
   ;; (advice-remove 'org-babel-do-load-languages #'ignore)
   (remove-hook 'org-mode-hook #'+org-make-last-point-visible-h)
   (add-to-list 'org-modules 'org-habit)
-  ;; (add-to-list '+org-babel-mode-alist '(julia . julia-snail))
+  (add-to-list '+org-babel-mode-alist '(julia . julia-snail))
   (defalias '+org--restart-mode-h #'ignore)
   (setq org-tags-column -80
         org-hugo-base-dir "~/Dropbox/projects/org/hugo"

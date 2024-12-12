@@ -76,7 +76,7 @@
 
 
 (package! combobulate
-  ;; :disable t
+  :disable t
   :recipe (:host github
            :repo "mickeynp/combobulate"
            )
@@ -94,8 +94,12 @@
            )
   )
 
-(package! smudge)
+(package! smudge
+  ;; :disable t
+  )
 
+(package! ess-plot
+  :recipe (:host github :repo "DennieTeMolder/ess-plot"))
 (package! scihub :recipe (:host github :repo "emacs-pe/scihub.el"))
 (package! corg :recipe (:host github :repo "isamert/corg.el"))
 

@@ -1,18 +1,15 @@
 
-;; For all modes
-;; (global-tree-sitter-mode)
-
 (after! dirvish
-  (setq! dirvish-quick-access-entries
-         `(("h" "~/"                          "Home")
-           ("e" ,user-emacs-directory         "Emacs user directory")
-           ("m" "~/Dropbox/projects/learning/usp/masters_degree/"                     "Masters Degree")
-           ("l" "~/Dropbox/projects/library"               "Library")
-           ("d" "~/Downloads/"                "Downloads")
-           ("t" "~/.local/share/Trash/files/" "Trash"))))
+  (setq dired-kill-when-opening-new-dired-buffer t
+        dirvish-quick-access-entries
+        `(("h" "~/"                          "Home")
+          ("e" ,user-emacs-directory         "Emacs user directory")
+          ("m" "~/Dropbox/projects/learning/usp/masters_degree/"                     "Masters Degree")
+          ("l" "~/Dropbox/projects/library"               "Library")
+          ("d" "~/Downloads/"                "Downloads")
+          ("t" "~/.local/share/Trash/files/" "Trash"))))
 
 (after! projectile
-
   (setq projectile-project-root-files-bottom-up '("package.json" ".projectile" ".project" ".git")
         projectile-ignored-projects '("~/.emacs.d/")
         projectile-project-search-path '("~/Dropbox/projects" ))
@@ -76,7 +73,7 @@
         org-babel-default-header-args:jupyter-julia  '((:async . "yes")
                                                        (:session . "jl")
                                                        (:pandoc . t)
-                                                       (:kernel . "julia-1.11"))
+                                                       (:kernel . "julia-kernel-1.9"))
         org-babel-default-header-args:jupyter-R      '((:async . "yes")
                                                        (:session . "r")
                                                        (:pandoc . t)
@@ -91,6 +88,7 @@
 
 
 ;; Configure Tempel
+;; TODO: Refac this use-package macro to after! macro
 (use-package! tempel
   :defer t
   ;; Require trigger prefix before template name when completing.
@@ -135,6 +133,8 @@
 ;;; add to $DOOMDIR/config.el
 (after! julia
   (setq eglot-jl-language-server-project eglot-jl-base)
+  (ess-julia-mode)
+  (julia-snail)
   )
 
 (after! eshell
@@ -209,4 +209,11 @@
   )
 
 
+;; (after! aider
+;;   (setenv "OPENAI_API_KEY"  (+pass-get-secret "openai/api_key"))
+;;   )
 
+(after! ess-r-mode
+  (require 'ess-plot)
+  (ess-plot-toggle)
+  )

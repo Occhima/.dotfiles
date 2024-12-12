@@ -1,6 +1,6 @@
 (use-package! copilot
   :defer t
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
+  :bind (
          ("C-<tab>" . 'copilot-accept-completion-by-word)
          :map copilot-completion-map
          ("<tab>" . 'copilot-accept-completion)
@@ -24,3 +24,7 @@
   :defer t
   ;; :if (modulep! :tools ai +khoj)
   )
+
+(use-package! aider
+  :config
+  (setq aider-args '("--model" "gpt-4o-mini")))

@@ -21,13 +21,17 @@
 
        :completion
        ;; (company
-       ;;   +childframe
+       ;; +childframe
        ;;   )       ; the ultimate code completion backend
        ;;  helm ; the *other* search engine for love and life
        ;;ido                           ; the other *other* search engine...
        ;; (ivy +icons +fuzzy +prescient +childframe) ; a search engine for love and life
        (corfu  +orderless +icons +dabbrev)
-       (vertico +icons +childframe)
+       (vertico
+        +icons
+        ;; commenting due to bug in my config, long
+        ;; +childframe
+        )
 
 
        :ui
@@ -258,7 +262,7 @@
        ;;swift                         ; who asked for emoji variables?
        ;;terra                         ; Earth and Moon in alignment for performance.
        (web +lsp +tree-sitter)                       ; the tubes
-       yaml                             ; JSON, but readable
+       (yaml +tree-sitter)                             ; JSON, but readable
 
        :email
        (mu4e +gmail +org +consult)
