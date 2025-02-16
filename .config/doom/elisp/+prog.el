@@ -40,9 +40,9 @@
   )
 
 (after! consult-gh
-  (add-to-list 'consult-gh-default-orgs-list "Occhima")
+  ;; (add-to-list 'consult-gh-default-orgs-list "Occhima")
   (setq consult-gh-default-clone-directory "~/Dropbox/projects")
-
+  ;; (consult-gh-embark-mode)
   )
 
 
@@ -209,11 +209,12 @@
   )
 
 
-;; (after! aider
-;;   (setenv "OPENAI_API_KEY"  (+pass-get-secret "openai/api_key"))
-;;   )
+(after! aider
+  (setenv "OPENAI_API_KEY"  (+pass-get-secret "openai/api_key"))
+  )
 
 (after! ess-r-mode
   (require 'ess-plot)
   (ess-plot-toggle)
   )
+
