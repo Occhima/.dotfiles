@@ -1,7 +1,7 @@
 {
     "layer": "top", // Waybar at top layer
     "position": "top", // Waybar position (top|bottom|left|right)
-    "output": ["DP-1","HDMI-A-1"],
+    "output": ["DP-2","HDMI-A-1"],
     "height": 8, // Waybar height (to be removed for auto height)
     "width": "auto", // Waybar width
     "spacing": 4, // Gaps between modules (4px)

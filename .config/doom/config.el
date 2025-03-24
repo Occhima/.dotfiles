@@ -3,17 +3,14 @@
 
 ;; Code:
 
+(defun +occhima/load-doom-modules   (dir)
+  (unless (file-directory-p dir)
+    (error "Provided path '%s' is not a directory" dir))
+  (dolist (file (directory-files-recursively dir "\\.el$"))
+    (load! (file-name-sans-extension file))))
 
+(+occhima/load-doom-modules  (expand-file-name "elisp" (file-name-directory load-file-name)))
 
-
-(load! "elisp/+ui")
-(load! "elisp/+prog")
-(load! "elisp/+org")
-(load! "elisp/+apps")
-(load! "elisp/+academic")
-(load! "elisp/+misc")
-(load! "elisp/+functions")
-(load! "elisp/+keybindings")
 
 
 (setq user-full-name "Marco Occhialini"
@@ -33,7 +30,6 @@
       trash-directory "~/.local/share/Trash/files")               ; Compile the vterm-module when needed without asking
 
 
-;; (server-start)
 
 
 

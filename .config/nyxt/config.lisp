@@ -1,6 +1,12 @@
 ;; Env
 (setf (uiop/os:getenv "WEBKIT_DISABLE_COMPOSITING_MODE") "1")
 
+
+(defvar custom-theme (
+
+                      ))
+
+
 ;; Variables
 (defvar *my-search-engines*
   (list

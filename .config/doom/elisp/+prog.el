@@ -210,7 +210,8 @@
 
 
 (after! aider
-  (setenv "OPENAI_API_KEY"  (+pass-get-secret "openai/api_key"))
+  (setq aider-args '("--model" "r1"))
+  (setenv "DEEPSEEK_API_KEY"  (+pass-get-secret "deepseek/api_key"))
   )
 
 (after! ess-r-mode

@@ -26,5 +26,5 @@
   )
 
 (use-package! aider
-  :config
-  (setq aider-args '("--model" "o3-mini")))
+  :defer t
+  )
